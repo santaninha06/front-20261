@@ -1,24 +1,26 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const matricula = document.querySelector('#matricula');
+const senha = document.querySelector('#senha');
+const botao = document.querySelector('button');
 
-setupCounter(document.querySelector('#counter'))
+botao.addEventListener('click', function(e){
+  const matriculaErro = document.querySelector("matriculaErro");
+  const senhaErro = document.querySelector("senhaErro");
+
+  if (matricula.value ==''){
+    matriculaErro.textContent="matricula é obrigatoria";
+    return;
+  }
+  if (parseInt(matricula.value)<=0){
+    matriculaErro.textContent="matricula deve ser um numero positivo";
+  }
+
+  if (senha.value ==''){
+    senhaErro.textContent="senha é obrigatoria";
+    return;
+  }
+  if (senha.value.length<8){
+    senhaErro.textContent="Senha deve ter no minimo 8 caracteres";
+  }
+
+});
