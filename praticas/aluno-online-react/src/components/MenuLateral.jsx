@@ -1,4 +1,4 @@
-import '../styles/menuLateral.css';
+import '../components/MenuLateral.css';
 
 function MenuLateral() {
   return (

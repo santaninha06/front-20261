@@ -1,4 +1,4 @@
-import '../styles/header.css';
+import '../components/Header.css';
 
 function Header({ titulo }) {
   return (
