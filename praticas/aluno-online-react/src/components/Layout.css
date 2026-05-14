@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  /* MENU */
+  .sidebar {
+    width: 250px;
+    background-color: #ececec;
+    padding: 40px 30px;
+    border-right: 1px solid #ddd;
+  }
+  
+  /* ÁREA PRINCIPAL */
+  .main {
+    flex: 1;
+    padding: 30px 50px;
+  }
+  
+  /* AVATAR */
+  .topbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+  }
+  
+  /* CONTEÚDO DAS PÁGINAS */
+  .page-content {
+    max-width: 1000px;
+  }
+  
+  /* RESPONSIVO */
+  @media (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+  
+    .main {
+      padding: 20px;
+    }
+  }
