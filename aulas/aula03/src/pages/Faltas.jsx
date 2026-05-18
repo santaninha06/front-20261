@@ -8,7 +8,9 @@ function Faltas(){
         <main>
             <Topbar />
             <h2>Minhas faltas</h2>
-            <section></section>
+            <section>
+                
+            </section>
         </main>
     </div>
     );
