@@ -1,17 +1,16 @@
-import MenuLateral from '../components/MenuLateral';
-import Header from '../components/Header';
-import '../styles/faltas.css';
+import "../styles/page.css";
 
 function Faltas() {
   return (
-    <>
-      <MenuLateral />
-      <Header />
+    <div className="page">
+      <h1 className="page-title">Faltas</h1>
 
-      <main>
-        <h2>Histórico de faltas por semestre</h2>
+      <div className="card">
+        <div className="card-header">
+          Histórico de faltas por semestre
+        </div>
 
-        <section>
+        <div className="card-body">
           <h3>2026.1</h3>
 
           <table>
@@ -29,11 +28,13 @@ function Faltas() {
                 <td>0</td>
                 <td>100%</td>
               </tr>
+
               <tr>
                 <td>Construção de Frontend</td>
                 <td>0</td>
                 <td>100%</td>
               </tr>
+
               <tr>
                 <td>Manutenção de Software e Devops</td>
                 <td>0</td>
@@ -41,9 +42,9 @@ function Faltas() {
               </tr>
             </tbody>
           </table>
-        </section>
-      </main>
-    </>
+        </div>
+      </div>
+    </div>
   );
 }
 

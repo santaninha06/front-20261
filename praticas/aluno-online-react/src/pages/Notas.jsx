@@ -1,12 +1,9 @@
-import MenuLateral from '../components/MenuLateral';
-import Header from '../components/Header';
-import '../styles/notas.css';
+import "../styles/page.css";
+
 
 function Notas() {
   return (
-    <>
-      <MenuLateral />
-      <Header />
+   
 
       <main>
         <h2>Histórico de notas</h2>
@@ -51,7 +48,7 @@ function Notas() {
           </table>
         </section>
       </main>
-    </>
+    
   );
 }
 

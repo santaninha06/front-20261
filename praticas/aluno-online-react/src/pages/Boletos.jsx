@@ -1,17 +1,16 @@
-import MenuLateral from '../components/MenuLateral';
-import Header from '../components/Header';
-import '../styles/boletos.css';
+import "../styles/page.css";
 
 function Boletos() {
   return (
-    <>
-      <MenuLateral />
-      <Header />
+    <div className="page">
+      <h1 className="page-title">Boletos</h1>
 
-      <main>
-        <h2>Histórico de pagamento</h2>
+      <div className="card">
+        <div className="card-header">
+          Histórico de pagamento
+        </div>
 
-        <section>
+        <div className="card-body">
           <table>
             <thead>
               <tr>
@@ -24,24 +23,26 @@ function Boletos() {
             <tbody>
               <tr>
                 <td>19/01/2026</td>
-                <td>500,00</td>
-                <td>100%</td>
+                <td>R$ 500,00</td>
+                <td>Pago</td>
               </tr>
+
               <tr>
-                <td>19/01/2026</td>
-                <td>500,00</td>
-                <td>100%</td>
+                <td>19/02/2026</td>
+                <td>R$ 500,00</td>
+                <td>Pago</td>
               </tr>
+
               <tr>
-                <td>19/01/2026</td>
-                <td>500,00</td>
-                <td>100%</td>
+                <td>19/03/2026</td>
+                <td>R$ 500,00</td>
+                <td>Pendente</td>
               </tr>
             </tbody>
           </table>
-        </section>
-      </main>
-    </>
+        </div>
+      </div>
+    </div>
   );
 }
 

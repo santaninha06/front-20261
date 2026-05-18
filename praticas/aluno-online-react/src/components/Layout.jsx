@@ -1,19 +1,22 @@
+import { Outlet } from "react-router";
+import MenuLateral from "../components/MenuLateral";
 import Header from "./Header";
-import MenuLateral from "../MenuLateral";
 import "./Layout.css";
 
-function Layout({ children }) {
+function Layout() {
   return (
     <div className="layout">
-      <MenuLateral />
+      <aside className="sidebar">
+        <MenuLateral />
+      </aside>
 
-      <div className="main">
+      <main className="main">
         <Header />
 
-        <div className="content">
-          {children}
+        <div className="page-content">
+          <Outlet />
         </div>
-      </div>
+      </main>
     </div>
   );
 }
