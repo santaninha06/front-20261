@@ -1,0 +1,89 @@
+.page {
+    max-width: 1000px;
+  }
+  
+  .page-title {
+    font-size: 56px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .page-subtitle {
+    font-size: 24px;
+    margin-bottom: 35px;
+    color: #333;
+  }
+  
+  /* CARD */
+  
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+  }
+  
+  .card-header {
+    background-color: #ececec;
+    padding: 18px 22px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 25px;
+  }
+  
+  .card-body p {
+    margin-bottom: 14px;
+    font-size: 20px;
+    color: #444;
+  }
+  
+  /* TABELAS */
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  thead {
+    background-color: #ececec;
+  }
+  
+  th,
+  td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  th {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  tr:hover {
+    background-color: #f7f7f7;
+  }
+  
+  /* RESPONSIVO */
+  
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 38px;
+    }
+  
+    .page-subtitle {
+      font-size: 20px;
+    }
+  
+    th,
+    td {
+      font-size: 15px;
+      padding: 12px;
+    }
+  }

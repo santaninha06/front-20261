@@ -1,21 +1,22 @@
-import MenuLateral from '../components/MenuLateral';
-import Header from '../components/Header';
-import '../styles/requerimentos.css';
+import "../styles/page.css";
 
 function Requerimentos() {
   return (
-    <>
-      <MenuLateral />
-      <Header />
+    <div className="page">
+      <h1 className="page-title">
+        Requerimentos
+      </h1>
 
-      <main>
-        <h2>Faça solicitação online</h2>
+      <div className="card">
+        <div className="card-header">
+          Solicitações online
+        </div>
 
-        <section>
+        <div className="card-body">
           <table>
             <thead>
               <tr>
-                <th>Tipo de requerimentos</th>
+                <th>Tipo</th>
                 <th>Data</th>
                 <th>Situação</th>
               </tr>
@@ -27,11 +28,13 @@ function Requerimentos() {
                 <td>19/01/2026</td>
                 <td>Indeferido</td>
               </tr>
+
               <tr>
                 <td>Dispensa de disciplina</td>
                 <td>19/01/2026</td>
                 <td>Indeferido</td>
               </tr>
+
               <tr>
                 <td>Trancamento de matrícula</td>
                 <td>19/01/2026</td>
@@ -39,9 +42,9 @@ function Requerimentos() {
               </tr>
             </tbody>
           </table>
-        </section>
-      </main>
-    </>
+        </div>
+      </div>
+    </div>
   );
 }
 

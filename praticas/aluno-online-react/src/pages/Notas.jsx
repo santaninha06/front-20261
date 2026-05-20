@@ -1,15 +1,12 @@
-import MenuLateral from '../components/MenuLateral';
-import Header from '../components/Header';
-import '../styles/faltas.css';
+import "../styles/page.css";
 
-function Faltas() {
+
+function Notas() {
   return (
-    <>
-      <MenuLateral />
-      <Header />
+   
 
       <main>
-        <h2>Histórico de faltas por semestre</h2>
+        <h2>Histórico de notas</h2>
 
         <section>
           <h3>2026.1</h3>
@@ -18,33 +15,41 @@ function Faltas() {
             <thead>
               <tr>
                 <th>Disciplina</th>
-                <th>Total de Faltas</th>
-                <th>% de Presença</th>
+                <th>A1</th>
+                <th>A2</th>
+                <th>A3</th>
+                <th>Menção</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
                 <td>BI e Data Warehousing</td>
-                <td>0</td>
-                <td>100%</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>SR</td>
               </tr>
               <tr>
                 <td>Construção de Frontend</td>
-                <td>0</td>
-                <td>100%</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>SR</td>
               </tr>
               <tr>
                 <td>Manutenção de Software e Devops</td>
-                <td>0</td>
-                <td>100%</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>SR</td>
               </tr>
             </tbody>
           </table>
         </section>
       </main>
-    </>
+    
   );
 }
 
-export default Faltas;
+export default Notas;
