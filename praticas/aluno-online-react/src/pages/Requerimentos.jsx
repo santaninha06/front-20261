@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "../styles/page.css";
 
 function Requerimentos() {
@@ -6,6 +7,12 @@ function Requerimentos() {
       <h1 className="page-title">
         Requerimentos
       </h1>
+
+      <Link to="/requerimentos/novo">
+        <button className="btn-primary">
+        ➕ Novo Requerimento
+        </button>
+      </Link>
 
       <div className="card">
         <div className="card-header">

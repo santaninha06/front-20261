@@ -2,11 +2,14 @@ import { Routes, Route, Navigate } from "react-router";
 
 import Layout from "./components/Layout";
 
+
 import Dashboard from "./pages/Dashboard";
 import Faltas from "./pages/Faltas";
 import Notas from "./pages/Notas";
 import Boletos from "./pages/Boletos";
-import Login from "./pages/Login";
+import Requerimentos from "./pages/Requerimentos";
+import RequerimentoForm from "./forms/RequerimentoForm";
+
 
 import "./App.css";
 
@@ -38,11 +41,17 @@ function App() {
 
         <Route path="boletos" element={<Boletos />} />
 
-        <Route
-          path="requerimentos"
-          element={<h1>Requerimentos</h1>}
-        />
+       
+        <Route path="requerimentos">
+          <Route index element={<Requerimentos />} />
 
+          <Route
+            path="novo"
+            element={<RequerimentoForm />}
+          />
+        </Route>
+
+        <Route path="sair" element={<h1>Sair</h1>} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" />} />
