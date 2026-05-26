@@ -12,6 +12,12 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+<<<<<<< HEAD
+    "react-hook-form": "^7.76.1",
+=======
+    "react-hook": "^0.0.1",
+    "react-hook-form": "^7.76.0",
+>>>>>>> a1f1986137e90af07ab81e94174ba921130196c7
     "react-router": "^7.15.1"
   },
   "devDependencies": {
