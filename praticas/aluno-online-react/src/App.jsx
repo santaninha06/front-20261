@@ -14,7 +14,7 @@ import RequerimentoForm from "./forms/RequerimentoForm";
 
 import "./App.css";
 
-import { useAuth } from "./contexts/AuthContext";
+
 
 function App() {
   const { autenticado } = useAuth();
