@@ -142,3 +142,4 @@ function RequerimentoForm({ onSubmit }) {
 }
 
 export default RequerimentoForm;
+export default RequerimentoForm;
