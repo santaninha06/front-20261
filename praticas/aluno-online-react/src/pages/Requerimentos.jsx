@@ -1,56 +1,58 @@
-import { Link } from "react-router";
-import "../styles/page.css";
+import { useEffect, useState } from "react";
+import {
+  listarRequerimentos,
+  criarRequerimento,
+} from "../services/requerimentoService";
+import RequerimentoForm from "../forms/RequerimentoForm";
 
 function Requerimentos() {
+  const [requerimentos, setRequerimentos] = useState([]);
+
+  useEffect(() => {
+    async function carregar() {
+      try {
+        const dados = await listarRequerimentos();
+        setRequerimentos(dados);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    carregar();
+  }, []);
+
+  async function handleSubmit(dados) {
+    try {
+      const novo = await criarRequerimento(dados);
+
+      setRequerimentos((lista) => [
+        ...lista,
+        novo,
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div className="page">
-      <h1 className="page-title">
-        Requerimentos
-      </h1>
+    <div>
+      <h1>Requerimentos</h1>
 
-      <Link to="/requerimentos/novo">
-        <button className="btn-primary">
-        ➕ Novo Requerimento
-        </button>
-      </Link>
+      <RequerimentoForm
+        onSubmit={handleSubmit}
+      />
 
-      <div className="card">
-        <div className="card-header">
-          Solicitações online
-        </div>
+      <ul>
+        {requerimentos.map((req) => (
+          <li key={req.id}>
+            <strong>{req.tipo}</strong>
 
-        <div className="card-body">
-          <table>
-            <thead>
-              <tr>
-                <th>Tipo</th>
-                <th>Data</th>
-                <th>Situação</th>
-              </tr>
-            </thead>
+            <p>{req.descricao}</p>
 
-            <tbody>
-              <tr>
-                <td>Revisão de Menção</td>
-                <td>19/01/2026</td>
-                <td>Indeferido</td>
-              </tr>
-
-              <tr>
-                <td>Dispensa de disciplina</td>
-                <td>19/01/2026</td>
-                <td>Indeferido</td>
-              </tr>
-
-              <tr>
-                <td>Trancamento de matrícula</td>
-                <td>19/01/2026</td>
-                <td>Deferido</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+            <small>{req.data}</small>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

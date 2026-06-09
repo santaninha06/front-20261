@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
-function RequerimentoForm() {
+function RequerimentoForm({ onSubmit }) {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -8,85 +11,132 @@ function RequerimentoForm() {
     formState: { errors },
   } = useForm();
 
-  function salvar(data) {
-    console.log(data);
+  const salvar = async (dados) => {
+    await onSubmit(dados);
 
     reset();
-  }
+
+    alert("Requerimento enviado com sucesso!");
+  };
 
   return (
-    <div>
-      <h1>Meus Requerimentos</h1>
+    <div className="page">
+      <h1 className="page-title">
+        Meus Requerimentos
+      </h1>
 
-      <h2>Novo Requerimento</h2>
-
-      <form onSubmit={handleSubmit(salvar)}>
-        <div>
-          <label>Tipo de Requerimento</label>
-          <br />
-
-          <select
-            {...register("tipo", {
-              required: "Tipo é obrigatório",
-            })}
-          >
-            <option value="">Selecione um tipo...</option>
-            <option value="declaracao">Revisão de Menção</option>
-            <option value="historico">Dispensa de disciplina</option>
-            <option value="segunda-via">Trancamento de matrícula</option>
-          </select>
-
-          {errors.tipo && (
-            <p style={{ color: "red" }}>
-              {errors.tipo.message}
-            </p>
-          )}
+      <div className="card">
+        <div className="card-header">
+          Novo Requerimento
         </div>
 
-        <br />
+        <div className="card-body">
+          <form onSubmit={handleSubmit(salvar)}>
+            <div>
+              <label>
+                Tipo de Requerimento
+              </label>
 
-        <div>
-          <label>Descrição</label>
-          <br />
+              <br />
 
-          <textarea
-            rows="5"
-            cols="60"
-            {...register("descricao", {
-              required: "Descrição é obrigatório",
-              minLength: {
-                value: 10,
-                message:
-                  "Descrição deve ter no mínimo 10 caracteres",
-              },
-            })}
-          />
+              <select
+                {...register("tipo", {
+                  required:
+                    "Tipo é obrigatório",
+                })}
+              >
+                <option value="">
+                  Selecione um tipo...
+                </option>
 
-          {errors.descricao && (
-            <p style={{ color: "red" }}>
-              {errors.descricao.message}
-            </p>
-          )}
+                <option value="Revisão de Menção">
+                  Revisão de Menção
+                </option>
+
+                <option value="Dispensa de Disciplina">
+                  Dispensa de Disciplina
+                </option>
+
+                <option value="Trancamento de Matrícula">
+                  Trancamento de Matrícula
+                </option>
+              </select>
+
+              {errors.tipo && (
+                <p style={{ color: "red" }}>
+                  {errors.tipo.message}
+                </p>
+              )}
+            </div>
+
+            <br />
+
+            <div>
+              <label>Descrição</label>
+
+              <br />
+
+              <textarea
+                rows="8"
+                cols="70"
+                {...register("descricao", {
+                  required:
+                    "Descrição é obrigatória",
+
+                  minLength: {
+                    value: 10,
+                    message:
+                      "A descrição deve possuir no mínimo 10 caracteres",
+                  },
+                })}
+              />
+
+              {errors.descricao && (
+                <p style={{ color: "red" }}>
+                  {errors.descricao.message}
+                </p>
+              )}
+            </div>
+
+            <br />
+
+            <div>
+              <label>
+                Data do Requerimento
+              </label>
+
+              <br />
+
+              <input
+                type="date"
+                defaultValue={
+                  new Date()
+                    .toISOString()
+                    .split("T")[0]
+                }
+                {...register("data")}
+              />
+            </div>
+
+            <br />
+
+            <button
+              type="button"
+              onClick={() =>
+                navigate("/requerimentos")
+              }
+            >
+              Cancelar
+            </button>
+
+            {" "}
+
+            <button type="submit">
+              Salvar
+            </button>
+          </form>
         </div>
-
-        <br />
-
-        <div>
-          <label>Data do Requerimento</label>
-          <br />
-
-          <input
-            type="date"
-            defaultValue={new Date().toISOString().split("T")[0]}
-            {...register("data")}
-          />
-        </div>
-
-        <br />
-
-        <button type="button">Cancelar</button>
-        <button type="submit">Salvar</button>
-      </form>
+      </div>
     </div>
   );
 }

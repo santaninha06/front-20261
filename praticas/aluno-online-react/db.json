@@ -1,0 +1,41 @@
+{
+  "requerimentos": [
+    {
+      "id": "1",
+      "tipo": "Revisão de Menção",
+      "descricao": "Exemplo vindo do db.json",
+      "data": "2026-06-09"
+    },
+    {
+      "tipo": "Revisão de Menção",
+      "descricao": "suhudhsuohuisdfhuidshufhuiasd",
+      "data": "2026-06-09",
+      "id": "TWLVxJN4USc"
+    },
+    {
+      "tipo": "Trancamento de Matrícula",
+      "descricao": "njbsdhafjbwjadfnjnfjdmsf",
+      "data": "2026-06-17",
+      "id": "zaRNXTE3JRY"
+    },
+    {
+      "tipo": "Trancamento de Matrícula",
+      "descricao": "sffsdgfsdgsdg",
+      "data": "2026-06-09",
+      "id": "zJareTCVK5k"
+    },
+    {
+      "tipo": "Dispensa de Disciplina",
+      "descricao": "wnhjnjfnjkfnjnfjsaffrf",
+      "data": "2026-06-09",
+      "id": "RVBLHr1u3dc"
+    },
+    {
+      "tipo": "Trancamento de Matrícula",
+      "descricao": "trancando por motivos pessoais ",
+      "data": "2026-06-22",
+      "id": "DeI7C_98TT0"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

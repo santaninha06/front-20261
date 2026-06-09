@@ -1,55 +1,60 @@
-import { useForm } from "react-hook-form";
-
+import { useState } from "react";
 import { useNavigate } from "react-router";
-
 import { useAuth } from "../contexts/AuthContext";
-import "../styles/page.css";
 
 function Login() {
-
-  const { register, handleSubmit } = useForm();
-
   const navigate = useNavigate();
-
   const { login } = useAuth();
 
-  function entrar(dados) {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     login({
-      nome: dados.nome,
-      email: dados.email,
+      email,
     });
 
     navigate("/");
-  }
+  };
 
   return (
     <div>
-
       <h1>Login</h1>
 
-      <form onSubmit={handleSubmit(entrar)}>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="email"
+            placeholder="Digite seu e-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Nome"
-          {...register("nome")}
-        />
+        <br />
 
-        <input
-          type="email"
-          placeholder="Email"
-          {...register("email")}
-        />
+        <div>
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+        </div>
+
+        <br />
 
         <button type="submit">
           Entrar
         </button>
-
       </form>
-
     </div>
   );
 }
+
 
 export default Login;
