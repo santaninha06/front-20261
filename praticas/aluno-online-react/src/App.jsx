@@ -1,12 +1,29 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
+import { useAuth } from "./contexts/AuthContext";
+
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Faltas from "./pages/Faltas";
 import Notas from "./pages/Notas";
 import Boletos from "./pages/Boletos";
+import Login from "./pages/Login";
+import Requerimentos from "./pages/Requerimentos";
+import RequerimentoForm from "./forms/RequerimentoForm";
+
 import "./App.css";
 
 function App() {
+  const { autenticado } = useAuth();
+
+  if (!autenticado) {
+    return (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -16,10 +33,16 @@ function App() {
         <Route path="faltas" element={<Faltas />} />
         <Route path="boletos" element={<Boletos />} />
 
-        
-        <Route path="requerimentos" element={<h1>Requerimentos</h1>} />
-        <Route path="sair" element={<h1>Sair</h1>} />
+        <Route path="requerimentos">
+          <Route index element={<Requerimentos />} />
+          <Route
+            path="novo"
+            element={<RequerimentoForm />}
+          />
+        </Route>
       </Route>
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
