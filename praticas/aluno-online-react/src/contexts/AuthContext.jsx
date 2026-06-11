@@ -13,17 +13,15 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem("token");
 
     if (usuarioSalvo && token) {
-      setUsuario(JSON.parse(usuarioSalvo));
+      const usuarioParse = JSON.parse(usuarioSalvo);
+
+      setUsuario(usuarioParse);
       setAutenticado(true);
     }
   }, []);
 
   const login = (dadosUsuario, token) => {
-    localStorage.setItem(
-      "usuario",
-      JSON.stringify(dadosUsuario)
-    );
-
+    localStorage.setItem("usuario", JSON.stringify(dadosUsuario));
     localStorage.setItem("token", token);
 
     setUsuario(dadosUsuario);
