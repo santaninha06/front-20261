@@ -32,16 +32,13 @@ function Requerimentos() {
     }
 
     carregar();
-  }, []);
+  }, [logout, navigate]);
 
   async function handleSubmit(dados) {
     try {
       const novo = await criarRequerimento(dados);
 
-      setRequerimentos((lista) => [
-        ...lista,
-        novo,
-      ]);
+      setRequerimentos((lista) => [...lista, novo]);
     } catch (error) {
       if (error.status === 401) {
         logout();

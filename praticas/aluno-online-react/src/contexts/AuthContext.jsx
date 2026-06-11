@@ -1,24 +1,26 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [auth, setAuth] = useState({
+function getInitialAuth() {
+  const usuarioSalvo = localStorage.getItem("usuario");
+  const token = localStorage.getItem("token");
+
+  if (usuarioSalvo && token) {
+    return {
+      usuario: JSON.parse(usuarioSalvo),
+      autenticado: true,
+    };
+  }
+
+  return {
     usuario: null,
     autenticado: false,
-  });
+  };
+}
 
-  useEffect(() => {
-    const usuarioSalvo = localStorage.getItem("usuario");
-    const token = localStorage.getItem("token");
-
-    if (usuarioSalvo && token) {
-      setAuth({
-        usuario: JSON.parse(usuarioSalvo),
-        autenticado: true,
-      });
-    }
-  }, []);
+export function AuthProvider({ children }) {
+  const [auth, setAuth] = useState(getInitialAuth);
 
   const login = (dadosUsuario, token) => {
     localStorage.setItem("usuario", JSON.stringify(dadosUsuario));
@@ -52,8 +54,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  return useContext(AuthContext);
 }
