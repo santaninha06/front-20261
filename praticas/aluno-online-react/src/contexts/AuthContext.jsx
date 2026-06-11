@@ -1,37 +1,57 @@
- /* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react-refresh/only-export-components */
 
- import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
- const AuthContext = createContext();
- 
- export function AuthProvider({ children }) {
-   const [autenticado, setAutenticado] = useState(false);
-   const [usuario, setUsuario] = useState(null);
- 
-   const login = (dadosUsuario) => {
-     setUsuario(dadosUsuario);
-     setAutenticado(true);
-   };
- 
-   const logout = () => {
-     setUsuario(null);
-     setAutenticado(false);
-   };
- 
-   return (
-     <AuthContext.Provider
-       value={{
-         autenticado,
-         usuario,
-         login,
-         logout,
-       }}
-     >
-       {children}
-     </AuthContext.Provider>
-   );
- }
- 
- export function useAuth() {
-   return useContext(AuthContext);
- }
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+  const [usuario, setUsuario] = useState(null);
+  const [autenticado, setAutenticado] = useState(false);
+
+  useEffect(() => {
+    const usuarioSalvo = localStorage.getItem("usuario");
+    const token = localStorage.getItem("token");
+
+    if (usuarioSalvo && token) {
+      setUsuario(JSON.parse(usuarioSalvo));
+      setAutenticado(true);
+    }
+  }, []);
+
+  const login = (dadosUsuario, token) => {
+    localStorage.setItem(
+      "usuario",
+      JSON.stringify(dadosUsuario)
+    );
+
+    localStorage.setItem("token", token);
+
+    setUsuario(dadosUsuario);
+    setAutenticado(true);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("token");
+
+    setUsuario(null);
+    setAutenticado(false);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        autenticado,
+        usuario,
+        login,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
+}
