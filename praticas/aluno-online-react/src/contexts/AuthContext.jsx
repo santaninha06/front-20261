@@ -1,22 +1,22 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [usuario, setUsuario] = useState(null);
-  const [autenticado, setAutenticado] = useState(false);
+  const [auth, setAuth] = useState({
+    usuario: null,
+    autenticado: false,
+  });
 
   useEffect(() => {
     const usuarioSalvo = localStorage.getItem("usuario");
     const token = localStorage.getItem("token");
 
     if (usuarioSalvo && token) {
-      const usuarioParse = JSON.parse(usuarioSalvo);
-
-      setUsuario(usuarioParse);
-      setAutenticado(true);
+      setAuth({
+        usuario: JSON.parse(usuarioSalvo),
+        autenticado: true,
+      });
     }
   }, []);
 
@@ -24,23 +24,27 @@ export function AuthProvider({ children }) {
     localStorage.setItem("usuario", JSON.stringify(dadosUsuario));
     localStorage.setItem("token", token);
 
-    setUsuario(dadosUsuario);
-    setAutenticado(true);
+    setAuth({
+      usuario: dadosUsuario,
+      autenticado: true,
+    });
   };
 
   const logout = () => {
     localStorage.removeItem("usuario");
     localStorage.removeItem("token");
 
-    setUsuario(null);
-    setAutenticado(false);
+    setAuth({
+      usuario: null,
+      autenticado: false,
+    });
   };
 
   return (
     <AuthContext.Provider
       value={{
-        autenticado,
-        usuario,
+        autenticado: auth.autenticado,
+        usuario: auth.usuario,
         login,
         logout,
       }}
