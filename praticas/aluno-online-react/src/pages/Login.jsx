@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
+import { login as loginService } from "../services/authService";
 
 function Login() {
   const navigate = useNavigate();
@@ -9,52 +10,46 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    login({
-      email,
-    });
+    try {
+      const resposta = await loginService(email, senha);
 
-    navigate("/");
+      login(resposta.usuario, resposta.token);
+
+      navigate("/");
+    } catch (erro) {
+      console.log(erro);
+      alert("Credenciais inválidas");
+    }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            placeholder="Digite seu e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+      <div>
+        <label htmlFor="senha">Senha</label>
+        <input
+          id="senha"
+          type="password"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+        />
+      </div>
 
-        <br />
-
-        <div>
-          <input
-            type="password"
-            placeholder="Digite sua senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
-        </div>
-
-        <br />
-
-        <button type="submit">
-          Entrar
-        </button>
-      </form>
-    </div>
+      <button type="submit">Entrar</button>
+    </form>
   );
 }
-
 
 export default Login;
